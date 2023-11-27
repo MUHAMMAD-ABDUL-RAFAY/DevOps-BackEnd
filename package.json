@@ -1,5 +1,12 @@
 {
   "dependencies": {
     "enoent": "^1.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "build": "webpack --mode=production"
   }
 }
