@@ -17,7 +17,7 @@ const port = 4589;
 
 /** HTTP GET Request */
 app.get('/', (req, res) => {
-    res.status(201).json("Home GET Request");
+    res.status(201).send(`<h1>Welcome to my Node.js Express App</h1><p>This is the home page.</p>`);
 });
 
 
