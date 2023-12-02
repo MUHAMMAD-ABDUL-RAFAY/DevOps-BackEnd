@@ -26,7 +26,7 @@ app.use(morgan('tiny'));
 app.disable('x-powered-by'); // less hackers know about our stack
 
 
-const port = 4589;
+const port = process.env.PORT || 4589;
 
 
 /** api routes */
