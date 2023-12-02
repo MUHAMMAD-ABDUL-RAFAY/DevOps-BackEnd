@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "start:dev": "node ./dev-build/main.cjs",
     "build:dev": "webpack --config webpack.dev.cjs --mode development"
   },

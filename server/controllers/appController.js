@@ -41,10 +41,8 @@ const verifyUser = async function (req, res, next){
 }
 */
 const register = async function (req,res){
-
     try {
         const { username, password, profile, email } = req.body;        
-
         // check the existing user
         const existUsername = new Promise((resolve, reject) => {
             UserModel.findOne({ username }, function(err, user){
@@ -54,7 +52,6 @@ const register = async function (req,res){
                 resolve();
             })
         });
-
         // check for existing email
         const existEmail = new Promise((resolve, reject) => {
             UserModel.findOne({ email }, function(err, email){

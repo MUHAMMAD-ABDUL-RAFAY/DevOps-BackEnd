@@ -3,13 +3,13 @@ const router = express.Router();
 
 // Import all controllers using require
 const {register,verifyUser,login,getUser,verifyOTP,createResetSession,resetPassword,updateUser,generateOTP,returnUsers} = require('../controllers/appController.js');
-const mailerController = require('../controllers/mailer.js');
+const {registerMail} = require('../controllers/mailer.js');
 const {localVariables,Auth} = require('../middleware/auth.js');
 
 
 /** POST Methods */
 router.route('/register').post(register); // register user
-//router.route('/registerMail').post(mailerController.registerMail); // send the email
+router.route('/registerMail').post(registerMail); // send the email
 router.route('/authenticate').post(verifyUser, (req, res) => res.end()); // authenticate user
 router.route('/login').post(verifyUser,login); // login in app
 
