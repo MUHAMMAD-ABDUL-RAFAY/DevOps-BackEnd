@@ -1,30 +1,35 @@
-import { Router } from "express";
-const router = Router();
+const express = require("express");
+const router = express.Router();
 
-/** import all controllers */
-import * as controller from '../controllers/appController.js';
-import { registerMail } from '../controllers/mailer.js'
-import Auth, { localVariables } from '../middleware/auth.js';
-
+// Import all controllers using require
+const {register,verifyUser,login,getUser,verifyOTP,createResetSession,resetPassword,updateUser,generateOTP} = require('../controllers/appController.js');
+const mailerController = require('../controllers/mailer.js');
+const {localVariables,Auth} = require('../middleware/auth.js');
 
 
 /** POST Methods */
-router.route('/register').post(controller.register); // register user
-router.route('/registerMail').post(registerMail); // send the email
-router.route('/authenticate').post(controller.verifyUser, (req, res) => res.end()); // authenticate user
-router.route('/login').post(controller.verifyUser,controller.login); // login in app
+router.route('/register').post(register); // register user
+router.route('/registerMail').post(mailerController.registerMail); // send the email
+router.route('/authenticate').post(verifyUser, (req, res) => res.end()); // authenticate user
+router.route('/login').post(verifyUser,login); // login in app
 
 /** GET Methods */
-router.route('/user/:username').get(controller.getUser) // user with username
-router.route('/generateOTP').get(controller.verifyUser, localVariables, controller.generateOTP) // generate random OTP
-router.route('/verifyOTP').get(controller.verifyUser, controller.verifyOTP) // verify generated OTP
-router.route('/createResetSession').get(controller.createResetSession) // reset all the variables
+router.route('/user/:username').get(getUser) // user with username
+router.route('/generateOTP').get(verifyUser, localVariables, generateOTP) // generate random OTP
+router.route('/verifyOTP').get(verifyUser, verifyOTP) // verify generated OTP
+router.route('/createResetSession').get(createResetSession) // reset all the variables
 
 
 /** PUT Methods */
-router.route('/updateuser').put(Auth, controller.updateUser); // is use to update the user profile
-router.route('/resetPassword').put(controller.verifyUser, controller.resetPassword); // use to reset password
+router.route('/updateuser').put(Auth, updateUser); // is use to update the user profile
+router.route('/resetPassword').put(verifyUser, resetPassword); // use to reset password
 
 
 
-export default router;
+module.exports = router;
+
+
+
+
+
+

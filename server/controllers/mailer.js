@@ -1,8 +1,11 @@
-import nodemailer from 'nodemailer';
-import Mailgen from 'mailgen';
+// import nodemailer from 'nodemailer';
+// import Mailgen from 'mailgen';
 
-import ENV from '../config.js';
+// import ENV from '../config.js';
 
+const nodemailer = require('nodemailer')
+const Mailgen = require('mailgen')
+const ENV = require('../config.js')
 
 // https://ethereal.email/create
 let nodeConfig = {
@@ -16,13 +19,7 @@ let nodeConfig = {
 }
 
 let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
-    auth: {
-        user: ENV.EMAIL,
-        pass: ENV.PASSWORD,
-    },
+    nodeConfig,
     tls: {
         rejectUnauthorized: false
     }
@@ -45,7 +42,7 @@ let MailGenerator = new Mailgen({
   "subject" : "",
 }
 */
-export const registerMail = async (req, res) => {
+const registerMail = async (req, res) => {
     const { username, userEmail, text, subject } = req.body;
 
     // body of the email
@@ -75,4 +72,8 @@ export const registerMail = async (req, res) => {
                 res.status(500).send({ error })
             })
     console.log("sent email")
+}
+
+module.exports = {
+    registerMail
 }

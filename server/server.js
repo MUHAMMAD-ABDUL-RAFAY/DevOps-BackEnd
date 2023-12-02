@@ -1,9 +1,16 @@
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import connect from './database/conn.js';
-import router from './router/route.js';
-import dotenv from 'dotenv'
+// import express from 'express';
+// import cors from 'cors';
+// import morgan from 'morgan';
+// import connect from './database/conn.js';
+// import router from './router/route.js';
+// import dotenv from 'dotenv'
+const express = require('express')
+const cors = require('cors')
+const morgan = require('morgan')
+const connect = require('./database/conn.js')
+const router = require('./router/route.js')
+const dotenv = require('dotenv')
+
 dotenv.config()
 const app = express();
 

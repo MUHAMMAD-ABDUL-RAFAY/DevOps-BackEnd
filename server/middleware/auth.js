@@ -1,8 +1,11 @@
-import jwt from 'jsonwebtoken';
-import ENV from '../config.js'
+// import jwt from 'jsonwebtoken';
+// import ENV from '../config.js'
+
+const jwt = require('jsonwebtoken')
+const ENV = require('../config.js')
 
 /** auth middleware */
-export default async function Auth(req, res, next){
+async function Auth(req, res, next){
     try {
         
         // access authorize header to validate request
@@ -21,10 +24,14 @@ export default async function Auth(req, res, next){
 }
 
 
-export function localVariables(req, res, next){
+function localVariables(req, res, next){
     req.app.locals = {
         OTP : null,
         resetSession : false
     }
     next()
+}
+module.exports = {
+    Auth,
+    localVariables
 }

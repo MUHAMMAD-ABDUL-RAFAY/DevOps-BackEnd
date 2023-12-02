@@ -1,8 +1,10 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
+//import mongoose from "mongoose";
+const dotenv = require('dotenv')
 
-import { MongoMemoryServer } from "mongodb-memory-server";
-import ENV from '../config.js'
-import dotenv from 'dotenv'
+//import { MongoMemoryServer } from "mongodb-memory-server";
+//import ENV from '../config.js'
+//import dotenv from 'dotenv'
 dotenv.config()
 async function connect(){
 
@@ -16,4 +18,5 @@ async function connect(){
     return db;
 }
 
-export default connect;
+
+module.exports = connect;
