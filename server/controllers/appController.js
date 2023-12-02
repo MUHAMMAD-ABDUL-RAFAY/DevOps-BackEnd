@@ -5,7 +5,7 @@
 // import otpGenerator from 'otp-generator';
 
 const UserModel = require('../model/User.model.js')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const ENV = require('../config.js')
 const otpGenerator = require('otp-generator')
