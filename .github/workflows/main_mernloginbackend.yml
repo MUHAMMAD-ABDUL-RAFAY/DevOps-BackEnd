@@ -59,4 +59,4 @@ jobs:
           app-name: 'mernloginbackend'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1CED45C11DD34A029397B08C7AD57EEB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1C57788D6C754ABEA27BAA4D7F425E12 }}
