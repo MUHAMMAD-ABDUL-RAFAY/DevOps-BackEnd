@@ -23,17 +23,10 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(morgan('tiny'));
-//app.use(express.static('public'))
 app.disable('x-powered-by'); // less hackers know about our stack
 
 
 const port = 4589;
-
-
-/** HTTP GET Request */
-app.get('/', (req, res) => {
-    res.json({message: "hello world"});
-});
 
 
 /** api routes */
