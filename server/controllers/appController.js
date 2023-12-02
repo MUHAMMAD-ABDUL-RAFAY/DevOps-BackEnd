@@ -9,7 +9,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const ENV = require('../config.js')
 const otpGenerator = require('otp-generator')
-
+const dotenv = require('dotenv')
+dotenv.config()
 /** middleware for verify user */
 const verifyUser = async function (req, res, next){
     try {
@@ -124,7 +125,7 @@ const login = async function(req,res){
                         const token = jwt.sign({
                                         userId: user._id,
                                         username : user.username
-                                    }, ENV.JWT_SECRET , { expiresIn : "24h"});
+                                    }, process.env.JWT_SECRET , { expiresIn : "24h"});
 
                         return res.status(200).send({
                             msg: "Login Successful...!",

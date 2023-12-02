@@ -6,15 +6,16 @@
 const nodemailer = require('nodemailer')
 const Mailgen = require('mailgen')
 const ENV = require('../config.js')
-
+const dotenv = require('dotenv')
+dotenv.config()
 // https://ethereal.email/create
 let nodeConfig = {
     host: "smtp.ethereal.email",
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-        user: ENV.EMAIL,
-        pass: ENV.PASSWORD,
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
     }
 }
 
@@ -56,7 +57,7 @@ const registerMail = async (req, res) => {
 
     var emailBody = MailGenerator.generate(email);
     let message = {
-        from : ENV.EMAIL,
+        from : process.env.EMAIL,
         to: userEmail,
         subject : subject || "Signup Successful",
         html : emailBody
