@@ -3,21 +3,25 @@ import cors from 'cors';
 import morgan from 'morgan';
 import connect from './database/conn.js';
 import router from './router/route.js';
-
+import dotenv from 'dotenv'
+dotenv.config()
 const app = express();
 
 /** middlewares */
+
 app.use(express.json());
 app.use(cors());
 app.use(morgan('tiny'));
+//app.use(express.static('public'))
 app.disable('x-powered-by'); // less hackers know about our stack
 
 
 const port = 4589;
 
+
 /** HTTP GET Request */
 app.get('/', (req, res) => {
-    res.status(201).send(`<h1>Welcome to my Node.js Express App</h1><p>This is the home page.</p>`);
+    res.json({message: "hello world"});
 });
 
 

@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "start:dev": "node ./dev-build/main.cjs",
     "build:dev": "webpack --config webpack.dev.cjs --mode development"
   },
@@ -13,29 +13,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-crt": "^1.19.0",
-    "aws-sdk": "^2.1503.0",
-    "aws4": "^1.12.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "env": "^0.0.2",
     "express": "^4.18.2",
-    "file-loader": "^6.2.0",
-    "html-loader": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
-    "kerberos": "^2.1.0",
     "mailgen": "^2.0.27",
-    "mock-aws-s3": "^4.0.2",
-    "mongodb-client-encryption": "^6.0.0",
+    "mongodb": "^6.3.0",
     "mongodb-memory-server": "^8.10.2",
     "mongoose": "^6.8.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nock": "^13.3.8",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.22",
-    "otp-generator": "^4.0.0",
-    "parcel": "^2.10.3",
-    "snappy": "^7.2.2"
+    "otp-generator": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
