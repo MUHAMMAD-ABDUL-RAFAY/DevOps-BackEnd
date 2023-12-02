@@ -9,7 +9,7 @@ const {localVariables,Auth} = require('../middleware/auth.js');
 
 /** POST Methods */
 router.route('/register').post(register); // register user
-router.route('/registerMail').post(mailerController.registerMail); // send the email
+//router.route('/registerMail').post(mailerController.registerMail); // send the email
 router.route('/authenticate').post(verifyUser, (req, res) => res.end()); // authenticate user
 router.route('/login').post(verifyUser,login); // login in app
 
