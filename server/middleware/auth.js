@@ -4,6 +4,7 @@
 const jwt = require('jsonwebtoken')
 const ENV = require('../config.js')
 const dotenv = require('dotenv')
+dotenv.config()
 /** auth middleware */
 async function Auth(req, res, next){
     try {
