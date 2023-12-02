@@ -18,7 +18,7 @@ router.route('/user/:username').get(getUser) // user with username
 router.route('/generateOTP').get(verifyUser, localVariables, generateOTP) // generate random OTP
 router.route('/verifyOTP').get(verifyUser, verifyOTP) // verify generated OTP
 router.route('/createResetSession').get(createResetSession) // reset all the variables
-router.route('/returnallusers',returnUsers)
+router.route('/returnallusers').get(returnUsers)
 
 /** PUT Methods */
 router.route('/updateuser').put(Auth, updateUser); // is use to update the user profile
