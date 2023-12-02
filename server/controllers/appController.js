@@ -281,6 +281,15 @@ const resetPassword = async function(req,res){
     }
 }
 
+const returnUsers = async function(req,res){
+    try{
+        const users = await UserModel.find({})
+        res.status(200).send({users})
+    }
+    catch{
+        console.log('error')
+    }
+}
 
 module.exports = {
     register,
@@ -291,5 +300,6 @@ module.exports = {
     createResetSession,
     resetPassword,
     updateUser,
-    generateOTP
+    generateOTP,
+    returnUsers
 }

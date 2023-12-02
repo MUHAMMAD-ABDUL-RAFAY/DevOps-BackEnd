@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import all controllers using require
-const {register,verifyUser,login,getUser,verifyOTP,createResetSession,resetPassword,updateUser,generateOTP} = require('../controllers/appController.js');
+const {register,verifyUser,login,getUser,verifyOTP,createResetSession,resetPassword,updateUser,generateOTP,returnUsers} = require('../controllers/appController.js');
 const mailerController = require('../controllers/mailer.js');
 const {localVariables,Auth} = require('../middleware/auth.js');
 
@@ -18,7 +18,7 @@ router.route('/user/:username').get(getUser) // user with username
 router.route('/generateOTP').get(verifyUser, localVariables, generateOTP) // generate random OTP
 router.route('/verifyOTP').get(verifyUser, verifyOTP) // verify generated OTP
 router.route('/createResetSession').get(createResetSession) // reset all the variables
-
+router.route('/returnallusers',returnUsers)
 
 /** PUT Methods */
 router.route('/updateuser').put(Auth, updateUser); // is use to update the user profile
