@@ -16,8 +16,12 @@ const app = express();
 
 /** middlewares */
 
+const corsOptions = {
+    origin: 'https://mernlogin.azurewebsites.net',
+  };
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(morgan('tiny'));
 //app.use(express.static('public'))
 app.disable('x-powered-by'); // less hackers know about our stack
