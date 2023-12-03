@@ -187,7 +187,7 @@ const updateUser = async function(req,res){
         
         // const id = req.query.id;
         const { userId } = req.user;
-
+        console.log(req)
         if(userId){
             const body = req.body;
 
