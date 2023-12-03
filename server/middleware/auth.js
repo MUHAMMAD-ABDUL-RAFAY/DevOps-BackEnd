@@ -2,7 +2,7 @@
 // import ENV from '../config.js'
 
 const jwt = require('jsonwebtoken')
-const ENV = require('../config.js')
+//const ENV = require('../config.js')
 const dotenv = require('dotenv')
 dotenv.config()
 /** auth middleware */
