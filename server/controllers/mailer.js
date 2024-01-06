@@ -104,15 +104,15 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 // https://ethereal.email/create
-let nodeConfig = {
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD,
-    }
-}
+// let nodeConfig = {
+//     host: "smtp.ethereal.email",
+//     port: 587,
+//     secure: false, // true for 465, false for other ports
+//     auth: {
+//         user: process.env.EMAIL,
+//         pass: process.env.PASSWORD,
+//     }
+// }
 
 let transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
