@@ -5,6 +5,7 @@
 // import otpGenerator from 'otp-generator';
 
 const UserModel = require('../model/User.model.js')
+const VideoModel = require('../model/Video.model.js')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 //const ENV = require('../config.js')
@@ -288,6 +289,41 @@ const returnUsers = async function(req,res){
     }
 }
 
+const saveVideo = async function(req,res){
+
+    try{
+        const {videoname, videolink} = req.body
+        const username = req.user.username
+        console.log(username,videoname,videolink)
+        const video = new VideoModel({
+            videoname,
+            videolink,
+            username
+        })
+        video.save()
+        .then((result) => res.status(200).send({msg: "Video Saved"}))
+        .catch((err) => {
+            console.log(err)
+            res.status(400).send({msg: "Error in Saving Video"})
+        })
+    }
+    catch{
+        res.status(500).send({msg:"Internal Server Error"})
+    }
+}
+
+const getAllVideos = async function(req,res){
+    try{
+        console.log(req.user)
+        const username = req.user.username
+        const videos = await VideoModel.find({username})
+        res.status(200).send({videos})
+    }
+    catch{
+        res.status(500).send({msg:"Internal Server Error"})
+    }
+}
+
 module.exports = {
     register,
     verifyUser,
@@ -298,5 +334,7 @@ module.exports = {
     resetPassword,
     updateUser,
     generateOTP,
-    returnUsers
+    returnUsers,
+    saveVideo,
+    getAllVideos
 }
