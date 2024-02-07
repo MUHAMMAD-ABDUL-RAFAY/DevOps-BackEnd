@@ -11,8 +11,18 @@ const jwt = require('jsonwebtoken')
 //const ENV = require('../config.js')
 const otpGenerator = require('otp-generator')
 const dotenv = require('dotenv')
+const cloudinary = require('cloudinary').v2
 dotenv.config()
 /** middleware for verify user */
+
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+})
+
+
 const verifyUser = async function (req, res, next){
     try {
         
@@ -313,6 +323,7 @@ const saveVideo = async function(req,res){
 }
 
 const getAllVideos = async function(req,res){
+    console.log(req.body,req.user)
     try{
         console.log(req.user)
         const username = req.user.username
@@ -321,6 +332,41 @@ const getAllVideos = async function(req,res){
     }
     catch{
         res.status(500).send({msg:"Internal Server Error"})
+    }
+}
+
+const extractIdfromLink = function(videolink){
+    let urlArray = videolink.split('/')
+    let videoid = urlArray[urlArray.length - 1]
+    return videoid.substring(0,videoid.lastIndexOf("."))
+}
+
+
+const deleteVideo = async function(req,res){
+    try{
+        const {videolink,username} = req.body;
+        const videoId = extractIdfromLink(videolink)
+        console.log(videoId)
+        const response = await cloudinary.uploader.destroy(videoId,{resource_type: 'video'})
+        console.log(response.result)
+        if(response.result === "ok"){
+            const data = await VideoModel.deleteOne({videolink,username})
+            console.log(data.deletedCount,typeof data.deletedCount)
+            if(data.deletedCount == 1){
+                console.log("here")
+                res.status(200).send({msg:"Video Deleted Successfully"})
+            }
+            else{
+                res.status(400).send({msg:"Error in Deleting Video"})
+            }
+        }
+        else{
+            res.status(400).send({msg:"Error in Deleting Video"})
+        }    
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).send({msg:"Internal Server Error"});
     }
 }
 
@@ -336,5 +382,6 @@ module.exports = {
     generateOTP,
     returnUsers,
     saveVideo,
-    getAllVideos
+    getAllVideos,
+    deleteVideo
 }

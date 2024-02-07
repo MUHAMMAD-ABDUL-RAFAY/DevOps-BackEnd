@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import all controllers using require
-const {register,verifyUser,login,getUser,verifyOTP,createResetSession,resetPassword,updateUser,generateOTP,returnUsers,saveVideo,getAllVideos} = require('../controllers/appController.js');
+const {register,verifyUser,login,getUser,verifyOTP,createResetSession,resetPassword,updateUser,generateOTP,returnUsers,saveVideo,getAllVideos,deleteVideo} = require('../controllers/appController.js');
 const {registerMail} = require('../controllers/mailer.js');
 const {localVariables,Auth} = require('../middleware/auth.js');
 
@@ -25,6 +25,8 @@ router.route('/returnallvideos').get(Auth,getAllVideos)
 router.route('/updateuser').put(Auth, updateUser); // is use to update the user profile
 router.route('/resetPassword').put(verifyUser, resetPassword); // use to reset password
 
+/** Delete Methods */
+router.route('/deletevideo').post(Auth,deleteVideo); 
 
 
 module.exports = router;
