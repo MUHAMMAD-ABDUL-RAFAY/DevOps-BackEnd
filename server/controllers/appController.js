@@ -327,6 +327,7 @@ const getAllVideos = async function(req,res){
     try{
         console.log(req.user)
         const username = req.user.username
+        console.log(username)
         const videos = await VideoModel.find({username})
         res.status(200).send({videos})
     }
